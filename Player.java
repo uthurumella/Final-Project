@@ -1,73 +1,34 @@
-import java.util.*;
 public class Player {
-    private String name;
-    private int balance;
-    private Map<Integer, Integer> predictions = new HashMap<>();
+    private final String name;
+    private int tokens;
 
-    public Player(String name, int balance) {
+    private int currentStake = 0;
+    private Integer chosenNumber = null; // 1..6 or null
+    private boolean confirmed = false;
+
+    public Player(String name, int tokens) {
         this.name = name;
-        this.balance = balance;
+        this.tokens = Math.max(0, tokens);
     }
 
-    public boolean makePrediction(int number, int tokens) {
-        if (balance >= tokens && tokens > 0) {
-            predictions.clear(); // Only one prediction per round
-            predictions.put(number, tokens);
-            balance -= tokens;
-            return true;
-        }
+    public String getName() { return name; }
+    public int getTokens() { return tokens; }
+    public void addTokens(int x) { tokens += x; }
+    public boolean tryDeduct(int x) {
+        if (tokens >= x) { tokens -= x; return true; }
         return false;
     }
 
+    public int getCurrentStake() { return currentStake; }
+    public void addToStake(int x) { currentStake += x; }
+    public Integer getChosenNumber() { return chosenNumber; }
+    public void setChosenNumber(Integer n) { chosenNumber = n; }
+    public boolean isConfirmed() { return confirmed; }
+    public void setConfirmed(boolean c) { confirmed = c; }
 
-    public int evaluateRound(Map<Integer, Integer> freq) {
-        int totalLost = 0;
-        int totalWon = 0;
-        boolean allEqual = new HashSet<>(freq.values()).size() == 1;
-
-        for (Map.Entry<Integer, Integer> entry : predictions.entrySet()) {
-            int number = entry.getKey();
-            int bet = entry.getValue();
-            int count = freq.getOrDefault(number, 0);
-            int multiplier = 0;
-
-            if (!allEqual) {
-                switch (count) {
-                    case 2: multiplier = 2; break;
-                    case 3: multiplier = 3; break;
-                    case 5: multiplier = 5; break;
-                }
-            }
-
-            int reward = bet * multiplier;
-            if (reward == 0) totalLost += bet;
-            else totalWon += reward;
-            balance += reward;
-        }
-        predictions.clear();
-        return totalLost;
-    }
-
-    public void printBalance() {
-        System.out.println(name + " Tokens: " + balance);
-    }
-
-    public void showPredictions() {
-        System.out.println(name + "'s predictions this round:");
-        if (predictions.isEmpty()) {
-            System.out.println("  No tokes placed.");
-        } else {
-            for (Map.Entry<Integer, Integer> entry : predictions.entrySet()) {
-                System.out.println("  Number " + entry.getKey() + " → " + entry.getValue() + " token(s)");
-            }
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getBalance() {
-        return balance;
+    public void resetForRound() {
+        currentStake = 0;
+        chosenNumber = null;
+        confirmed = false;
     }
 }
