@@ -42,23 +42,27 @@ The owner (computer) distributes winnings to the winners and keeps any remaining
 
 ## GUI Screenshots
 
-### **1. Player Setup and Board Layout**
+### **1. Welcome Board**
 
-![Player Setup](screenshots/S1.png)
+![Welcome Board](screenshots/S6.png)
 
-### **2. All Players Confirmed**
+### **2. All Players Setup**
 
-![Players Confirmed](screenshots/S2.png)
+![Players Setup](screenshots/S7.png)
 
-### **3. Winner and Losers Highlighted**
+### **3. All Players and Number Board Setup**
+
+![Players and Number Board Setup](screenshots/S8.png)
+
+### **4. Winner and Losers Highlighted**
 
 ![Winner Highlight](screenshots/S3.png)
 
-### **4. Round Result with Profit Display**
+### **5. Round Result with Profit Display**
 
 ![Round Result](screenshots/S4.png)
 
-### **5. All Players Out of Tokens**
+### **6. All Players Out of Tokens**
 
 ![All Players Out](screenshots/S5.png)
 
@@ -164,5 +168,6 @@ java Main
 * Sudheer
 
 ---
+
 
 
