@@ -12,3 +12,4 @@ public class DiceRoller {
 
     public int rollOne() { return rng.nextInt(6) + 1; }
 }
+ 
