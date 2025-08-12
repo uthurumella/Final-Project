@@ -140,9 +140,9 @@ java Main
 
 ## Team Members
 
-* \[Your Name(s)]
-* \[Ravindra]
-* \[Uday Kiran]
-* \[Sudheer]
+* Ravindra
+* Uday Kiran
+* Sudheer
 
 ```
+
